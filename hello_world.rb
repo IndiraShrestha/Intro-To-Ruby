@@ -23,7 +23,6 @@ returnvalue = hello_name(my_name) #it
 puts returnvalue
 
 
-
 def celcius_to_f celcius 
 	return celcius * 9 / 5 + 32	 
 end
