@@ -15,7 +15,7 @@ final_encrypted_array = []
 # looping through each character to 
 array_encrypt.each do |x| 
 	integer_char = x.ord
-	if integer_char >= 65 && integer_char <=122
+	if integer_char >= 65 || integer_char <=122
 		encrypt_integer_char = integer_char + shift_by
 		encrypt_char = encrypt_integer_char.chr
 		#puts encrypt_char
@@ -36,6 +36,7 @@ answer_to_decrypt = gets.chomp.upcase
 
 if answer_to_decrypt == "Y"
 	final_decrypted_array = []
+	
 	final_encrypted_array.each do |y|
 		decrypt_char_integer = y.ord 
 		decrypt_char = (decrypt_char_integer - shift_by).chr
@@ -43,9 +44,8 @@ if answer_to_decrypt == "Y"
 		final_decrypted_array.push(decrypt_char)
 	end	
 
-
-final_decrypted_string = final_decrypted_array.join
-puts final_decrypted_string
+	final_decrypted_string = final_decrypted_array.join
+	puts final_decrypted_string
 else answer_to_decrypt == "N"
 	return
 end	

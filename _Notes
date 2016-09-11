@@ -1,0 +1,40 @@
+if .....
+
+end (other options are unless and case)
+
+while ....
+	
+end  (other options are until ...)
+
+methods 
+	rand
+
+array 
+  .push 
+  .pop
+  .shift
+  .delete
+  .delete_at()
+  .length
+  .empty
+  cars.length
+	cars.empty?
+	cars.include?(“mercedes”)
+	cars.sort
+	cars.shuffle
+	cars.rotate
+	cars.reverse
+	cars.join(“ “)
+
+Hash >>--- key and value pair
+
+Iterators - Each/Map
+
+Range 
+
+Class 	
+
+
+
+ difference between ? and ! 
+  
