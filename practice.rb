@@ -1,32 +1,21 @@
-class Mycar
-  attr_accessor :mileage
-  def gas_mileage(gas, miles)
-    @mileage = "#{miles/gas}"
+def is_prime?(num)
+  prime = true
+
+  (2...num).each do |x|
+    prime = false if num % x == 0
   end 
 
-end
+  return num if prime == true 
+end  
 
-class Person
-  attr_accessor :name
-  def initialize (name)
-    @name = name
-  end
-end
+puts is_prime?(13)
 
-bob = Person.new("Steve")
-bob.name = "Bob"
+# def find_prime_at?(prime_at)
+#   prime_array = [2, 3]
+  
 
-puts "Please enter a number between 1-100?"
-
-number = gets.chomp.to_i
-
-def check_number (number)
-  if number > 0 || number < 101 
-    if number > 0 || number < 50
-      puts "The #{number} is in between 0-50"
-
-    end 
-  else 
-    puts "Please enter a number between 1-100"
-  end 
-end 
+#   while prime_array.length <= prime_at
+#     prime_array << num if is_prime?(num)
+#   end  
+#   prime_array[prime_at]
+# end  
