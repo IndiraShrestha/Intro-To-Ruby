@@ -31,13 +31,13 @@ class Board
       row.each_index do |column|
         if row[column].is_a? String && position == (column - 1)
           puts "The position is already taken"
-          puts row[column]
-          # return false
+          return count = 0
         elsif position == row[column] && player == "Player1"
           row[column] = "X"  
-          puts column
+          return count = 1
         elsif position == row[column] && player == "Player2"
           row[column] = "O"
+          return count = 1
         end  
       end
     end    
@@ -88,7 +88,7 @@ board = Board.new
 board.display_board
 
 turn = 0
-
+count = 0
 while turn <= 9 || true
   puts "Which position would you like to mark Player 1?"
   position = gets.chomp.to_i
@@ -103,6 +103,6 @@ while turn <= 9 || true
   board.display_board
   board.winning?
 
-  turn += 1 
+  turn += count
 end  
 
