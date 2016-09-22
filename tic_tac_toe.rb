@@ -7,18 +7,20 @@
 #check for tie
 # if not continue to input square 
 # play again
+require "pry"
 class Board 
-  attr_reader :board
+  attr_reader :board, :check
 
   def initialize 
     @board = []
     board << [1, 2, 3]
     board << [4, 5, 6]
     board << [7, 8, 9]
-
+    @check = []
   end  
 
   def display_board
+    system "clear"
     @board 
     board.each do |x|
       puts x.join('|')
@@ -26,83 +28,93 @@ class Board
     end 
   end 
 
+  def check_move(position)
+    if @check.include?(position)
+      puts "That position is already taken"
+      return false
+    else
+      @check << position
+      return true
+    end  
+  end  
+
   def move(position, player)
-    @board.each do |row|
-      row.each_index do |column|
-        if row[column].is_a? String && position == (column - 1)
-          puts "The position is already taken"
-          return count = 0
-        elsif position == row[column] && player == "Player1"
-          row[column] = "X"  
-          return count = 1
-        elsif position == row[column] && player == "Player2"
-          row[column] = "O"
-          return count = 1
-        end  
-      end
+    if check_move(position) == true
+      @board.each do |row|
+        row.each_index do |column|
+          if position == row[column] && player == "Player1"
+            row[column] = "X"  
+          elsif position == row[column] && player == "Player2"
+            row[column] = "O"
+          end  
+        end
+      end  
     end    
   end  
 
   def winning?
-  if @board[0][0] == @board[1][1] and @board[1][1] == @board[2][2]
-    puts "Player 1 wins" if @board[0][0] == "X" 
-    puts "Player 2 wins" if @board[0][0] == "O"
-    true
-  elsif @board[0][2] == @board[1][1] and @board[1][1] == @board[2][0]
-    puts "Player 1 wins" if @board[0][2] == "X"
-    puts "Player 2 wins" if @board[0][2] == "O"
-    true
-  elsif @board[0][0] == @board[0][1] and @board[0][1] == @board[0][2]
-    puts "Player 1 wins" if @board[0][0] == "X"
-    puts "Player 2 wins" if @board[0][0] == "O"
-    true
-  elsif @board[0][1] == @board[1][1] and @board[1][1] == @board[2][1]
-    puts "Player 1 wins" if @board[0][1] == "X"
-    puts "Player 2 wins" if @board[0][1] == "O"
-    true
-  elsif @board[0][2] == @board[1][2] and @board[1][2] == @board[2][2]
-    puts "Player 1 wins" if @board[0][2] == "X"
-    puts "Player 2 wins" if @board[0][2] == "O"
-    true
-  elsif @board[1][0] == @board[1][1] and @board[1][1] == @board[1][2]
-    puts "Player 1 wins" if @board[1][0] == "X"
-    puts "Player 2 wins" if @board[1][0] == "O"
-    true
-  elsif @board[2][0] == @board[2][1] and @board[2][1] == @board[2][2]
-    puts "Player 1 wins" if @board[2][0] == "X"
-    puts "Player 2 wins" if @board[2][0] == "O"
-    true
-  elsif @board[0][0] == @board[0][1] and @board[0][1] == @board[0][2]
-    puts "Player 1 wins" if @board[0][0] = "X"
-    puts "Player 2 wins" if @board[0][0] = "O"
-    true
-  else
-    false
-  end    
-end  
+    if @board[0][0] == @board[1][1] and @board[1][1] == @board[2][2]
+      puts "Player 1 wins" if @board[0][0] == "X" 
+      puts "Player 2 wins" if @board[0][0] == "O"
+      true
+    elsif @board[0][2] == @board[1][1] and @board[1][1] == @board[2][0]
+      puts "Player 1 wins" if @board[0][2] == "X"
+      puts "Player 2 wins" if @board[0][2] == "O"
+      true
+    elsif @board[0][0] == @board[0][1] and @board[0][1] == @board[0][2]
+      puts "Player 1 wins" if @board[0][0] == "X"
+      puts "Player 2 wins" if @board[0][0] == "O"
+      true
+    elsif @board[0][1] == @board[1][1] and @board[1][1] == @board[2][1]
+      puts "Player 1 wins" if @board[0][1] == "X"
+      puts "Player 2 wins" if @board[0][1] == "O"
+      true
+    elsif @board[0][2] == @board[1][2] and @board[1][2] == @board[2][2]
+      puts "Player 1 wins" if @board[0][2] == "X"
+      puts "Player 2 wins" if @board[0][2] == "O"
+      true
+    elsif @board[1][0] == @board[1][1] and @board[1][1] == @board[1][2]
+      puts "Player 1 wins" if @board[1][0] == "X"
+      puts "Player 2 wins" if @board[1][0] == "O"
+      true
+    elsif @board[2][0] == @board[2][1] and @board[2][1] == @board[2][2]
+      puts "Player 1 wins" if @board[2][0] == "X"
+      puts "Player 2 wins" if @board[2][0] == "O"
+      true
+    elsif @board[0][0] == @board[0][1] and @board[0][1] == @board[0][2]
+      puts "Player 1 wins" if @board[0][0] = "X"
+      puts "Player 2 wins" if @board[0][0] = "O"
+      true
+    else
+      false
+    end    
+  end
+  
+  def tie?
+    return false
+  end   
 end 
-
-
 
 board = Board.new
 board.display_board
 
 turn = 0
 count = 0
-while turn <= 9 || true
+while true
   puts "Which position would you like to mark Player 1?"
   position = gets.chomp.to_i
+  board.display_board
 
   board.move(position, "Player1")
-  board.display_board
-  board.winning?
+  board.check_move(position)
+  break if board.winning? || board.tie?
 
+  board.display_board
   puts "Which position would you like to mark Player 2?"
   position = gets.chomp.to_i
   board.move(position, "Player2")
-  board.display_board
-  board.winning?
+  board.check_move(position)
+  break if board.winning? || board.tie?
 
-  turn += count
 end  
 
