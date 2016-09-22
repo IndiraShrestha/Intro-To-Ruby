@@ -31,7 +31,9 @@ class Board
   def check_move(position)
     if @check.include?(position)
       puts "That position is already taken"
+      puts @check
       return false
+
     else
       @check << position
       return true
@@ -99,22 +101,25 @@ board = Board.new
 board.display_board
 
 turn = 0
-count = 0
+
 while true
   puts "Which position would you like to mark Player 1?"
   position = gets.chomp.to_i
-  board.display_board
 
-  board.move(position, "Player1")
   board.check_move(position)
-  break if board.winning? || board.tie?
+  board.move(position, "Player1")
+  break if board.winning?
 
-  board.display_board
+  board.display_board  
+
   puts "Which position would you like to mark Player 2?"
   position = gets.chomp.to_i
-  board.move(position, "Player2")
   board.check_move(position)
-  break if board.winning? || board.tie?
+  board.move(position, "Player2")
+
+  # binding.pry
+  break if board.winning? 
+  board.display_board
 
 end  
 
