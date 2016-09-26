@@ -15,41 +15,78 @@ class Board
   end  
 
   def display_board
-    system 'clear'
+    # system 'clear'
     @board.each do |row|
       puts row.join('|')
       puts "___________________"
     end  
   end  
 
-  def input_squares(square)
-    @input_squares_array << square
-    # binding.pry
-  end  
+  def updated_board(column, player)
+    if column == 1 
+      if @board[6][(column-1)].is_a?(Numeric) 
+        @board[6][(column-1)] = player  
+      elsif @board[5][(column-1)].is_a?(Numeric)
+        @board[5][(column-1)] = player
+      elsif @board[4][(column-1)].is_a?(Numeric)
+        @board[4][(column-1)] = player 
+      elsif @board[3][(column-1)].is_a?(Numeric)
+        @board[3][(column-1)] = player  
+      elsif @board[2][(column-1)].is_a?(Numeric)
+        @board[2][(column-1)] = player  
+      elsif @board[1][(column-1)].is_a?(Numeric)
+        @board[1][(column-1)] = player  
+      elsif @board[0][(column-1)].is_a?(Numeric)
+        @board[0][(column-1)] = player  
+      elsif 
+        puts "Please select a valid column"          
+      end 
+    elsif column == 2
+      if @board[6][(column-1)].is_a?(Numeric) 
+        @board[6][(column-1)] = player  
+      elsif @board[5][(column-1)].is_a?(Numeric)
+        @board[5][(column-1)] = player
+      elsif @board[4][(column-1)].is_a?(Numeric)
+        @board[4][(column-1)] = player 
+      elsif @board[3][(column-1)].is_a?(Numeric)
+        @board[3][(column-1)] = player  
+      elsif @board[2][(column-1)].is_a?(Numeric)
+        @board[2][(column-1)] = player  
+      elsif @board[1][(column-1)].is_a?(Numeric)
+        @board[1][(column-1)] = player  
+      elsif @board[0][(column-1)].is_a?(Numeric)
+        @board[0][(column-1)] = player  
+      elsif 
+        puts "Please select a valid column"          
+      end 
 
-  def updated_board(square, player)
-    @board.each do |row|
-      row.each_index do |column|
-        if square == row[column] && row[column].is_a? Numeric
-          row[column] = player
-        elsif square == row[column] && row[column].is_a? String
-          puts "The square you selected is already taken. Please select another square"
-        end  
-      end
     end  
   end  
 
+  def check_vertical_input(square)
+
+
+  end  
 end
 
 board = Board.new
 
 board.display_board  
 
-puts "Player 1 please select a square [ 1-6 ]"
-square = gets.chomp.to_i
-board.updated_board(square, 'X')
-board.display_board
-board.input_squares(square)
+while true 
+  puts "Player 1 please select a column [ 1-6 ]"
+  column = gets.chomp.to_i
+  board.updated_board(column, 'X')
+  board.display_board 
+
+
+  puts "Player 2 please select a column"
+  column = gets.chomp.to_i
+  board.updated_board(column, 'O')
+  board.display_board 
+
+end
+
 
 
 
