@@ -25,6 +25,8 @@ class Suspects
     @suspects_list.each do |suspects|
       if gender != @guilty_suspect[1] && suspects[1] == gender
         index_of_suspect = @suspects_list.index(suspects)
+        # puts index_of_suspect
+        # puts @suspects_list[index_of_suspect].join('|')
         @suspects_list.delete_at(index_of_suspect)
       end
     end
