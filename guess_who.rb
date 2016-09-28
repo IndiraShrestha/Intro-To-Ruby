@@ -8,7 +8,6 @@ class Suspects
 
   def initialize
     @suspects_list = CSV.read('Suspects_file.csv')  
-    @remaining_suspects = []
     @guilty_suspect = [] 
   end 
 
@@ -22,13 +21,18 @@ class Suspects
     puts table
   end
 
-  def delete_not_matched_gender(gender) #method to delete the suspects with matched attribute.
+  def delete_not_matched_gender(gender) #method to delete the suspects with matched attribute
     @suspects_list.each do |suspects|
-      if suspects[1] == gender && gender != @guilty_suspect[1]
+      if gender != @guilty_suspect[1] && suspects[1] == gender
         index_of_suspect = @suspects_list.index(suspects)
         @suspects_list.delete_at(index_of_suspect)
-        puts index_of_suspect
       end
+    end
+    # binding.pry
+  end  
+  def delete_not_matched_skin_color(skin_color) #method to delete the suspects with matched attribute.
+    @suspects_list.delete_if do |suspects|
+      suspects[2].include?(skin_color)
     end
     # binding.pry
   end  
@@ -63,6 +67,7 @@ else
 end
 
 guess_who.delete_not_matched_gender(gender)
+guess_who.delete_not_matched_skin_color(skin_color)
 guess_who.show_list_of_suspects
 
 
