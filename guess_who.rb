@@ -24,13 +24,13 @@ class Suspects
 
   def delete_not_matched_gender(gender) #method to delete the suspects with matched attribute.
     @suspects_list.each do |suspects|
-      puts suspects[1]
-      if suspects[1] == gender && suspects[1] != @guilty_suspect[1]
+      if suspects[1] == gender && gender != @guilty_suspect[1]
         index_of_suspect = @suspects_list.index(suspects)
         @suspects_list.delete_at(index_of_suspect)
+        puts index_of_suspect
       end
     end
-    binding.pry
+    # binding.pry
   end  
  
 end  # end of Suspects class
@@ -64,7 +64,6 @@ end
 
 guess_who.delete_not_matched_gender(gender)
 guess_who.show_list_of_suspects
-binding.pry
 
 
 
