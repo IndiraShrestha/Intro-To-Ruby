@@ -18,51 +18,25 @@ class Board
       puts row.join('|')
       @board << row 
     end  
-    # @board.each do |row|
-    #   puts row.join('|')
-    #   puts "___________________"
-    # end  
   end  
 
   def updated_board(column, player)
-    puts @board.length
-    puts @board[0]
-
     if column == 1 
       @board.each do |row|
-        row.each_index do |column|
-          stack = @board.length - 1 - column
-          if @board[stack][(column-1)] != '_'
-            puts "The column is full"
-          elsif @board[stack][(column-1)] == '_'      
-            @board[stack][(column-1)] = player
-          end  
+        row.each_index do |x|
+          stack = (row.length - x -1).to_i
+          puts stack
+          binding.pry
+          # puts @board[stack][(column-1)]
+          # if @board[stack][(column-1)] != '_'
+          #   puts "The column is full"
+          # elsif @board[stack][(column-1)] == '_'      
+          #   @board[stack][(column-1)] = player
+          # end  
         end
       end  
-      
-
-    elsif column == 2
-      if @board[6][(column-1)] == '_'
-        @board[6][(column-1)] = player  
-      elsif @board[5][(column-1)].is_a?(Numeric)
-        @board[5][(column-1)] = player
-      elsif @board[4][(column-1)].is_a?(Numeric)
-        @board[4][(column-1)] = player 
-      elsif @board[3][(column-1)].is_a?(Numeric)
-        @board[3][(column-1)] = player  
-      elsif @board[2][(column-1)].is_a?(Numeric)
-        @board[2][(column-1)] = player  
-      elsif @board[1][(column-1)].is_a?(Numeric)
-        @board[1][(column-1)] = player  
-      elsif @board[0][(column-1)].is_a?(Numeric)
-        @board[0][(column-1)] = player  
-      elsif 
-        puts "The column is full. Please select another column"          
-      end 
-
     end  
   end  
-
   
 end
 
@@ -76,11 +50,11 @@ while true
   board.updated_board(column, 'X')
   board.display_board 
 
-
   puts "Player 2 please select a column"
   column = gets.chomp.to_i
   board.updated_board(column, 'O')
   board.display_board 
+  binding.pry
 
 end
 

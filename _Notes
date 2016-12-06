@@ -37,4 +37,14 @@ Class
 
 
  difference between ? and ! 
+
+
+ self is a key word that rep >> in rel to method then it will call that method
+                             >> in rel to class then it will call that class
+
+module 
+
+connect 4 >>> 
+
+build a twilio app
   
